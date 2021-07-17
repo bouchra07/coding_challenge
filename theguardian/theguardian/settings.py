@@ -89,3 +89,12 @@ ROBOTSTXT_OBEY = True
 
 FEED_FORMAT="csv"
 FEED_URI="theguardian.csv"
+
+ITEM_PIPELINES = {
+   'theguardian.pipelines.MongoPipeline': 20,
+}
+
+# MONGO_URI = 'mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass%20Community&ssl=false'
+
+MONGO_URI = 'mongodb+srv://bouchra:08051998@cluster0-5drqg.mongodb.net/test?retryWrites=true&w=majority'
+MONGO_DATABASE = 'theguardian_db'

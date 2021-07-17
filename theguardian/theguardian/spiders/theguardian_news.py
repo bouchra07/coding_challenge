@@ -1,5 +1,5 @@
 import scrapy
-
+from theguardian.items import TheguardianItem
 
 class TheguardianNewsSpider(scrapy.Spider):
     name = 'theguardian_news'
@@ -14,18 +14,15 @@ class TheguardianNewsSpider(scrapy.Spider):
         row_data = zip(article_headline, article_timestamp, article_url)
 
         # Making extracted data row wise
-        for item in row_data:
-            # create a dictionary to store the scraped info
-            scraped_info = {
-                # key:value
-                'page': response.url,
-                'article_headline': item[0],
-                # item[0] means product in the list and so on, index tells what value to assign
-                'article_timestamp': item[1],
-                'article_url': item[2],
-            }
+        for data in row_data:
+            item = TheguardianItem()
+            item['page'] = response.url
+            item['article_headline'] = data[0]
+            item['article_timestamp'] = data[1]
+            item['article_url'] = data[2]
+
             # yield or give the scraped info to scrapy
-            yield scraped_info
+            yield item
 
             next_page = response.xpath("//div[3]/div/div[3]/div/div/a[4]/@href").extract_first()
             if next_page:
