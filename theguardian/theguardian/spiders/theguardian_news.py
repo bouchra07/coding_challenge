@@ -4,7 +4,11 @@ from theguardian.items import TheguardianItem
 class TheguardianNewsSpider(scrapy.Spider):
     name = 'theguardian_news'
     allowed_domains = ['theguardian.com']
-    start_urls = ['http://www.theguardian.com/world/coronavirus-outbreak/all/']
+
+    theguardian_urls = ['world/coronavirus-outbreak', 'world', 'uk-news', 'uk/environment', 'uk/environment', 'science',
+                        'global-development', 'football', 'uk/technology', 'uk/business', 'tone/obituaries']
+
+    start_urls = ['https://www.theguardian.com/' + sub + '/all' for sub in theguardian_urls]
 
     def parse(self, response):
         article_headline = response.xpath("//div[@class='fc-item__container']/a/text()").extract()
