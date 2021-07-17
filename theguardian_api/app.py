@@ -6,7 +6,7 @@ from bson.json_util import dumps
 app = Flask(__name__)
 
 
-@app.route('/', methods=["GET","POST"])
+@app.route('/', methods=["GET"])
 def all_data():
     mongodb = MongoDb()
     df = mongodb.get_df_from_db()
@@ -14,7 +14,7 @@ def all_data():
 
     return df.to_json(orient='index')
 
-@app.route('/<key>', methods=["GET","POST"])
+@app.route('/<key>', methods=["GET"])
 def search_by_keyword(key):
     mongodb = MongoDb()
     # df = mongodb.get_df_from_db()
