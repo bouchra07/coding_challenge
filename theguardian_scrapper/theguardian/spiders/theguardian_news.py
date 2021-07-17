@@ -3,7 +3,7 @@ from theguardian.items import TheguardianItem
 
 class TheguardianNewsSpider(scrapy.Spider):
     name = 'theguardian_news'
-    allowed_domains = ['theguardian.com']
+    allowed_domains = ['theguardian_scrapper.com']
 
     theguardian_urls = ['world/coronavirus-outbreak', 'world', 'uk-news', 'uk/environment', 'uk/environment', 'science',
                         'global-development', 'football', 'uk/technology', 'uk/business', 'tone/obituaries']

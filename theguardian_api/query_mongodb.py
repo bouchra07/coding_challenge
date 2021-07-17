@@ -1,4 +1,5 @@
 from pymongo import MongoClient
+import re
 import app_config
 import pandas as pd
 
@@ -13,3 +14,9 @@ class MongoDb:
 
         return df
 
+    def get_items_by_keyword(self, keyword ,collection_name=app_config.collection_name):
+        rgx = re.compile('.*' + keyword + '.*', re.IGNORECASE)  # compile the regex
+
+        result = self.db[collection_name].find({'article_headline': rgx})
+
+        return result
