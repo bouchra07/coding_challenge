@@ -24,6 +24,7 @@ class TheguardianNewsSpider(scrapy.Spider):
             item['article_headline'] = data[0]
             item['article_timestamp'] = data[1]
             item['article_url'] = data[2]
+            item['article_tag'] = data[2].split("/")[3]
 
             # yield or give the scraped info to scrapy
             yield item

@@ -12,6 +12,7 @@ class TheguardianItem(scrapy.Item):
     article_headline = Field()
     article_timestamp = Field()
     article_url = Field()
+    article_tag = Field()
 
 
 
